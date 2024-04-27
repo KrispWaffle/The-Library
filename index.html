@@ -10,7 +10,7 @@
     <header class="header">
         <div class="container">
             <nav>
-                <h1>The Library</h1>
+                <h1>📖 The Library 📚</h1>
             </nav>
         </div>
     </header>
@@ -18,6 +18,27 @@
         <button class="btn btn-add" id="addBookBtn">+ Add book</button>
         <div class="books-grid" id="booksGrid"></div>
     </main>
+    <div class="dialog">
+        <dialog id="input">
+            <form>
+                
+                
+                <input id="bookTitle" placeholder="Enter Book Title">
+                <br>
+                <input id="authorInput" placeholder="Enter Author">
+                <br>
+                <input id="pagesInput" placeholder="Enter Pages">
+                <br>
+
+                <input id="hasRead"type="checkbox">
+                <label for="hasRead">Read?</label>
+
+                <button id="submit">Submit</button>
+                <button id="cancel">Cancel</button>
+            </form>
+        </dialog>
+
+    </div>
     <script src="main.js"></script>
 </body>
 </html>

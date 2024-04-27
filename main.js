@@ -1,5 +1,20 @@
 const myLibrary = [];
 const booksGrid = document.getElementById("booksGrid");
+const dialog = document.querySelector("dialog");
+const addBtn = document.querySelector("#addBookBtn");
+const cancelBtn = document.getElementById('cancel')
+const submitBtn = document.getElementById('submit')
+addBtn.addEventListener('click', function(){
+    dialog.showModal();
+    console.log('dialog opened')
+})
+cancelBtn.addEventListener('click',function(){
+    dialog.close();
+    console.log('closed')
+})
+
+
+
 function Book(title, author, pages, hasRead) {
   this.title = title;
   this.author = author;
@@ -45,3 +60,12 @@ function createBookCard(book) {
 function clearBooksGrid() {
   booksGrid.innerHTML = "";
 }
+submitBtn.addEventListener('click', function(){
+    event.preventDefault();
+    let booktitle = document.getElementById('bookTitle').value
+    let author = document.getElementById('authorInput').value
+    let pages = document.getElementById('pagesInput').value
+    
+    console.log(booktitle   )
+    dialog.close();
+})
