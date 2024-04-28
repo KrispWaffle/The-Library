@@ -11,6 +11,7 @@ addBtn.addEventListener('click', function(){
 cancelBtn.addEventListener('click',function(){
     dialog.close();
     console.log('closed')
+    event.preventDefault();
 })
 
 
@@ -29,11 +30,9 @@ function addBookToLibrary(title, author, pages, hasRead) {
   
 }
 
-addBookToLibrary("Harry Potter", "Jk Rowling", 1000, false);
 
-addBookToLibrary("Harry Potter", "Jk Rowling", 1000, false);
 
-function createBookCard(book) {
+function createBookCard(book,index) {
   const bookCard = document.createElement("div");
   const title = document.createElement("p");
   const author = document.createElement("p");
@@ -43,7 +42,13 @@ function createBookCard(book) {
   const removeBtn = document.createElement("button");
   bookCard.classList.add("book-card");
   buttonGroup.classList.add("button-group");
-
+  if (book.hasRead) {
+    readBtn.textContent = ' Read '
+    readBtn.style.backgroundColor = 'lightgreen'
+  } else {
+    readBtn.textContent = ' Not read '
+    readBtn.style.backgroundColor = 'lightcoral'
+  }
   title.textContent = `"${book.title}"`;
   author.textContent = book.author;
   pages.textContent = `${book.pages} pages`;
@@ -55,8 +60,27 @@ function createBookCard(book) {
   buttonGroup.appendChild(removeBtn);
   bookCard.appendChild(buttonGroup);
   booksGrid.appendChild(bookCard);
+  bookCard.dataset.index = index; // add data-index attribute
+  
+    // add event listener to remove button
+  removeBtn.addEventListener("click", function() {
+      removeBook(index);
+    });
 }
 
+function removeBook(index) {
+    const bookCard = document.querySelector(`[data-index="${index}"]`);
+    const book = myLibrary[index];
+  
+    // remove book card from booksGrid
+    booksGrid.removeChild(bookCard);
+  
+    // remove book from myLibrary
+    myLibrary.splice(index, 1);
+  
+   
+  }
+  
 function clearBooksGrid() {
   booksGrid.innerHTML = "";
 }
@@ -65,7 +89,9 @@ submitBtn.addEventListener('click', function(){
     let booktitle = document.getElementById('bookTitle').value
     let author = document.getElementById('authorInput').value
     let pages = document.getElementById('pagesInput').value
-    
-    console.log(booktitle   )
+    let hasRead = document.getElementById('hasRead').checked
+    addBookToLibrary(booktitle,author,pages,hasRead)
+    console.log(hasRead)
     dialog.close();
 })
+

@@ -102,6 +102,8 @@
     gap: var(--spacing-xl);
     margin-top: var(--spacing-xl);
   }
+  
+  
   .books-grid {
     display: flex;
     flex-wrap: wrap;
